@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <?php
-#session_start();
+session_start();
+include("includes/header.php");
 include("includes/connection.php");
 
-// if(!isset($_SESSION['user_email'])){
+if(!isset($_SESSION['user_email'])){
 
-//     session_destroy();
+    session_destroy();
     
-//     header("location: index.php");
-// }
+    header("location: index.php");
+}
 
-// if(isset($_SESSION['user_email'])){
+if(isset($_SESSION['user_email'])){
 
-//     $email = $_SESSION['user_email'];
-// }
+    $email = $_SESSION['user_email'];
+}
 
-// $update_activity = "UPDATE users SET last_activity = NOW() WHERE email = '$email'";
-// $run_update = mysqli_query($con, $update_activity);
+$update_activity = "UPDATE users SET last_activity = NOW() WHERE email = '$email'";
+$run_update = mysqli_query($con, $update_activity);
 
 ?>
 <html>
@@ -30,14 +31,101 @@ include("includes/connection.php");
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div class="row">
+		<center>
+
+		<!-- I got these buttons from simplesharebuttons.com -->
+		<div id="share-buttons">
+		    
+		    <!-- Buffer -->
+		    <a href="https://bufferapp.com/add?url=task.php?task_id=$task_id&amp;text=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/buffer.png" alt="Buffer" />
+		    </a>
+		    
+		    <!-- Digg -->
+		    <a href="http://www.digg.com/submit?url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/diggit.png" alt="Digg" />
+		    </a>
+		    
+		    <!-- Email -->
+		    <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 task.php?task_id=$task_id">
+		        <img src="images/share_buttons/email.png" alt="Email" />
+		    </a>
+		 
+		    <!-- Facebook -->
+		    <a href="http://www.facebook.com/sharer.php?u=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/facebook.png" alt="Facebook" />
+		    </a>
+		    
+		    <!-- Google+ -->
+		    <a href="https://plus.google.com/share?url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/google.png" alt="Google" />
+		    </a>
+		    
+		    <!-- LinkedIn -->
+		    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/linkedin.png" alt="LinkedIn" />
+		    </a>
+		    
+		    <!-- Pinterest -->
+		    <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+		        <img src="images/share_buttons/pinterest.png" alt="Pinterest" />
+		    </a>
+		    
+		    <!-- Print -->
+		    <a href="javascript:;" onclick="window.print()">
+		        <img src="images/share_buttons/print.png" alt="Print" />
+		    </a>
+		    
+		    <!-- Reddit -->
+		    <a href="http://reddit.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/reddit.png" alt="Reddit" />
+		    </a>
+		    
+		    <!-- StumbleUpon-->
+		    <a href="http://www.stumbleupon.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/stumbleupon.png" alt="StumbleUpon" />
+		    </a>
+		    
+		    <!-- Tumblr-->
+		    <a href="http://www.tumblr.com/share/link?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/tumblr.png" alt="Tumblr" />
+		    </a>
+		     
+		    <!-- Twitter -->
+		    <a href="https://twitter.com/share?url=task.php?task_id=$task_id&amp;text=Task%20on%20Mechsupport&amp;hashtags=taskonmechsupport" target="_blank">
+		        <img src="images/share_buttons/twitter.png" alt="Twitter" />
+		    </a>
+		    
+		    <!-- VK -->
+		    <a href="http://vkontakte.ru/share.php?url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/vk.png" alt="VK" />
+		    </a>
+		    
+		    <!-- Yummly -->
+		    <a href="http://www.yummly.com/urb/verify?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/yummly.png" alt="Yummly" />
+		    </a>
+
+		</div>
+	</center>
+		
+	</div>
 
 	<?php 
 
 		date_default_timezone_set('Africa/Lagos');
 
-		$task_id = 1; //this variable will be passed to this page from homepage&submit page, on clicking a task!
-		$user_id = 1;
-		$admin_id = 0; 
+		$task_id = $_GET['task_id'];
+
+		$admin_id = 1;
+
+		$user = $_SESSION['user_email'];
+		$get_user = "select user_id from users where email='$user'";
+		$run_user = mysqli_query($con,$get_user);
+		$row = mysqli_fetch_array($run_user);
+			
+		$user_id = $row['user_id']; 
 
 		$get_task = "SELECT * FROM tasks WHERE id ='$task_id'"; 
 		$run_task = mysqli_query($con,$get_task);
@@ -51,7 +139,7 @@ include("includes/connection.php");
 		$submitted = $row['submitted'];
 		$submitted_by = $row['submitted_by'];
 		$expiration_date = $row['expiration_date'];
-		$cost = $row['cost'];
+		$cost = $row['cost'] - 50;
 		$acceptable_users = $row['acceptable_users'];
 		$attached_users = $row['attached_users'];
 		$created_at = $row['created_at'];
@@ -79,7 +167,7 @@ include("includes/connection.php");
 							
 							<p><b>Title: </b>$title </p>
 							<p><b>Up until: </b> $output2 </p>
-							<p><b>Amount payable:</b> $$cost - 50 </p>
+							<p><b>Amount payable:</b> $$cost</p>
 							<p><b>Task Question: </b>$task_question</p>
 							<center><p><b>Task Description</b></p></center>
 							<p>$description </p>
@@ -95,8 +183,7 @@ include("includes/connection.php");
 
 							<div class='col-sm-12' style='display: inline-block; margin-top: 30%'>
 
-								<p><b>Number of People currently doing this task: </b>$attached_users </p>
-								<p><b>Possible Number of People for this task:</b> $acceptable_users </p> ";
+								 ";
 
 								//check the task type, and the link accordingly!
 								// begin task sends the task ID to next media page OR sends the task question and media path only. OR sends the three parameters! FROM DB
@@ -104,7 +191,7 @@ include("includes/connection.php");
 
 								if ($type == "transcription task") 
 								{
-									if ($acceptable_users !== $attached_users && $submitted != 'yes')
+									if ($acceptable_users !== $attached_users && $submitted != 'yes' && $user_id != $owner_id)
 									{
 										//change button to input type to run files creation script when clicked and
 										echo "
@@ -135,7 +222,7 @@ include("includes/connection.php");
 
 								else if ($type == "model labeling") 
 								{
-									if ($acceptable_users !== $attached_users && $submitted != 'yes')
+									if ($acceptable_users !== $attached_users && $submitted != 'yes' && $user_id != $owner_id)
 									{
 										echo "
 								  		<button class='btn btn-info' style='width: 100%; height: 50px;'><a href='next_media.php?media_file=0&question=$task_question&path=$media_path&task_id=$task_id' style='color: black; font-size: 25px;'>BEGIN TASK</a></button>

@@ -1,7 +1,7 @@
 <?php
 #session_start();
 include("includes/connection.php");
-include("functions/functions.php");
+// include("functions/functions.php");
 
 if(!isset($_SESSION['user_email'])){
 
@@ -19,7 +19,7 @@ $update_activity = "UPDATE users SET last_activity = NOW() WHERE email = '$email
 $run_update = mysqli_query($con, $update_activity);
 
 ?>
-<nav class="navbar navbar-default" style="background-color: #fd4720;">
+<nav class="navbar navbar-default" style="background-color: #87CEEB;">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" aria-expanded="false">
@@ -28,7 +28,7 @@ $run_update = mysqli_query($con, $update_activity);
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="home.php" style="color: white;">talsgrad</a>
+			<a class="navbar-brand" href="home.php" style="color: white;">mechsupport</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,62 +45,59 @@ $run_update = mysqli_query($con, $update_activity);
 			$first_name = $row['f_name'];
 			$last_name = $row['l_name'];
 			$describe_user = $row['describe_user'];
-			$Relationship_status = $row['Relationship'];
+			$profession = $row['profession'];
 			$user_pass = $row['user_pass'];
 			$user_email = $row['email'];
 			$user_country = $row['user_country'];
 			$user_gender = $row['user_gender'];
 			#$user_birthday = $row['user_birthday'];
 			$user_image = $row['user_image'];
-			$user_cover = $row['user_cover'];
 			$recovery_account = $row['recovery_account'];
 			$register_date = $row['user_reg_date'];
 					
 					
-			$user_posts = "SELECT * FROM posts WHERE user_id='$user_id'"; 
+			$user_tasks = "SELECT * FROM tasks WHERE owner_id='$user_id' OR submitted_by='$user_id' OR attached_users='$user_id'"; 
 
-			$run_posts = mysqli_query($con,$user_posts);
-			if (!$run_posts){
+			$run_tasks = mysqli_query($con,$user_tasks);
+			if (!$run_tasks){
 				die(mysqli_error($con));
 			} else{
-				$posts = mysqli_num_rows($run_posts);
+				$tasks = mysqli_num_rows($run_tasks);
 			}
 
-			$get_msg = "SELECT * FROM user_messages WHERE user_to='$user_id' AND msg_seen='no'";
+			// $get_msg = "SELECT * FROM user_messages WHERE user_to='$user_id' AND msg_seen='no'";
 
-			$run_msg = mysqli_query($con, $get_msg);
-			$msg_rows = mysqli_num_rows($run_msg);
+			// $run_msg = mysqli_query($con, $get_msg);
+			// $msg_rows = mysqli_num_rows($run_msg);
 
-			if($msg_rows>0){ //we don't want to show 0!
+			// if($msg_rows>0){ //we don't want to show 0!
 
-				$msg_rows = $msg_rows;
-			}
-			else{
+			// 	$msg_rows = $msg_rows;
+			// }
+			// else{
 
-				$msg_rows = '';
-			}
+			// 	$msg_rows = '';
+			// }
 
 		?>
 
 
 
-	        <li><a href='profile.php?<?php echo "u5Nm=$user_name" ?>' style="color: white;"><?php echo "$first_name"; ?></a></li>
-	       	<li><a href="home.php" style="color: white;">Home</a></li>
-			<li><a href="members.php" style="color: white;">Find Talents</a></li>
 			<li class="dropdown">
 					<form class="navbar-form navbar-left" method="get" action="results.php">
 						<div class="form-group">
-							<input type="text" class="form-control" name="user_query" placeholder="Search (posts, tags, etc.)">
+							<input type="text" class="form-control" name="user_query" placeholder="Search Tasks (by title or type)">
 						</div>
-						<button type="submit" class="btn btn-info" style="background-color: #232742;" name="search">Search</button>
+						<button type="submit" class="btn btn-info" style="background-color: #fd4720;" name="search">Search</button>
 					</form>
 			</li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 
+            <li><a href='create_task.php?<?php echo "u5Nm=$user_name" ?>' style="color: white;">Create Task</a></li>
 			<li class="nav-item dropdown">
-            <a class="nav-link" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; background-color: #fd4720;">Notifications 
+            <a class="nav-link" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; background-color: #87CEEB;">Notifications 
           		
           		 <?php
                 $get_notifications = "SELECT * from notifications where user_to_id = '$user_id' AND status = 'unread' order by date DESC";
@@ -113,7 +110,7 @@ $run_update = mysqli_query($con, $update_activity);
 
                 ?>
 
-                <span class="badge badge-light" style="background-color: #232742;"><?php echo "$notification_num_rows"; ?></span>
+                <span class="badge badge-light" style="background-color: #fd4720;"><?php echo "$notification_num_rows"; ?></span>
               <?php
 
                 }
@@ -138,7 +135,7 @@ $run_update = mysqli_query($con, $update_activity);
                             if($n['status']=='unread'){
                                 echo "font-weight:bold; color: #fd4720;";
                             }else{
-                                echo "color: #fd4720;";
+                                echo "color: #87CEEB;";
                             }
                          ?>
                          " class="dropdown-item" href="view_notification.php?type=<?php echo $n['type'] ?>&id=<?php echo $n['id'] ?>">
@@ -158,103 +155,12 @@ $run_update = mysqli_query($con, $update_activity);
 
                  switch($n['type']){
 
-                 	case 'comment':
-
-                 		if($user_id != $user_from_id){
-                 		 echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname commented on your portfolio item.";
-                         echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		}else{
-                 			echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You commented on your portfolio item.";
-                            echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		}
-                 		break;
-
-                 	case 'like':
-
-                 		if($user_id != $user_from_id){
-                 			echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname liked your portfolio item.";
-                            echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		}else{
-                 			echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You liked your portfolio item.";
-                            echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		}
-                 		break;
-
-                 	case 'inquire':
-                 		  if($user_id != $user_from_id){
-                            echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname made an inquiry about your item.";
-                             echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                        }else{
-                            echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You made an inquiry about an item. The item's owner should reply soon.";
-                             echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                        }
-                 		break;
-
-                 	case 'delpost':
-                 		echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You deleted your portfolio item.";
-                        echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		break;
-
-                 	case 'addbazaar':
-                 		echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You listed your portfolio item on bazaar.";
-                        echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		break;
-
-                 	case 'rembazaar':
-                 		echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You removed your portfolio item from bazaar.";
-                        echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		break;
-
-                    case 'post':
-                        echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You added a new portfolio item!";
-                        echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                        break;
-
-                 	case 'recommend':
-
-                 		if($user_id != $user_from_id){
-                 		 echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname recommended you to somebody.";
-                         echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		}else{
-                 			echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You recommended yourself to somebody.";
-                            echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		}
-                 		break;
-
-                 	case 'follow':
-                 		 echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname started scouting you.";
-                         echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		break;
-
-                 	case 'unfollow':
-                 		 echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname stopped scouting you.";
-                         echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		break;
-
-                 	case 'checkout':
-
-                 		if($user_id != $user_from_id){
-                        	echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> Your item was checked out from bazaar.Please check your inbox to complete the sales! Thank you";
-                            echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                    	}else{
-                    		echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You checked out an item from bazaar.The item owner will contact you soon! Thank you";
-                            echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                    	}
-                        break;
-
-                    case 'welcome':
+                 	case 'welcome':
                         echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> Welcome To Talsgrad! find out More...";
-                        echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
                         break;
 
-                 	case 'message':
-                 		echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You have more than 15 unread messages."; //code should be ejected in the user messages page whereby if unseen messages count is >15, insertion is made in the notifications table. 
-                        echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
-                 		break;
-
-                 	default:
-                 		echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname made a $type.";
-                        echo "<a href='notifications.php' style='float:right; font-size:10px; color:#fd4720;'> view all notifications</a> ";
+                    default:
+                        echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname made a $type.";
                  }
                   
                   ?>
@@ -269,25 +175,22 @@ $run_update = mysqli_query($con, $update_activity);
                  ?>
            </div>
           </li>
-
-
-				<li><a href='bazaar.php?<?php echo "u5Nm=$user_name" ?>' style="color: white;">Bazaar</a></li>
-				<li><a href="messages.php?u5Nm=new" style="color: white;">Messages <?php echo "<span class='badge badge-secondary' style='background-color: #232742;'>$msg_rows</span>"; ?></a></li>
+          <li><a href='profile.php?<?php echo "u5Nm=$user_name" ?>' style="color: white;"><?php echo "$first_name"; ?></a></li>
 				
 				<?php
 						echo"
 
 						<li class='dropdown'>
-							<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false' style='background-color:#fd4720;'><span style='color: #232742;'><i class='glyphicon glyphicon-chevron-down'></i></span></a>
+							<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false' style='background-color:#87CEEB;'><span style='color: #fd4720;'><i class='glyphicon glyphicon-chevron-down'></i></span></a>
 							<ul class='dropdown-menu'>
 								<li>
-									<a href='my_post.php?u5Nm=$user_name'>My Items <span class='badge badge-secondary' style='background-color: #232742;'>$posts</span></a>
+									<a href='my_tasks.php?u5Nm=$user_name'>My tasks <span class='badge badge-secondary' style='background-color: #fd4720;'>$tasks</span></a>
 								</li>
 								<li>
-									<a href='edit_profile.php'>Edit Account <span class='glyphicon glyphicon-pencil' style='color: #232742;'></span></a>
+									<a href='edit_profile.php'>Edit Account <span class='glyphicon glyphicon-pencil' style='color: #fd4720;'></span></a>
 								</li>
                                 <li>
-                                    <a href='settings.php?u5Nm=$user_name'>Settings <span class='glyphicon glyphicon-cog' style='color: #232742;'></span></a>
+                                    <a href='settings.php?u5Nm=$user_name'>Settings <span class='glyphicon glyphicon-cog' style='color: #fd4720;'></span></a>
                                 </li>
 								<li role='separator' class='divider'></li>
 								<li>

@@ -1034,7 +1034,7 @@ select option{
 		</div>
 		<!-- copyright -->
 		<div class="colorlibcopy-agile">
-			<p>© 2019 Talsgrad. All rights reserved | Contact support@talsgrad.com for all inquiries!</p>
+			<p>© 2019 Mechsupport. All rights reserved | Contact support@mechsupport.com for all inquiries!</p>
 		</div>
 		<!-- //copyright -->
 		<ul class="colorlib-bubbles">
