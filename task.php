@@ -31,86 +31,6 @@ $run_update = mysqli_query($con, $update_activity);
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="row">
-		<center>
-
-		<!-- I got these buttons from simplesharebuttons.com -->
-		<div id="share-buttons">
-		    
-		    <!-- Buffer -->
-		    <a href="https://bufferapp.com/add?url=task.php?task_id=$task_id&amp;text=Task on Mechsupport" target="_blank">
-		        <img src="images/share_buttons/buffer.png" alt="Buffer" />
-		    </a>
-		    
-		    <!-- Digg -->
-		    <a href="http://www.digg.com/submit?url=task.php?task_id=$task_id" target="_blank">
-		        <img src="images/share_buttons/diggit.png" alt="Digg" />
-		    </a>
-		    
-		    <!-- Email -->
-		    <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 task.php?task_id=$task_id">
-		        <img src="images/share_buttons/email.png" alt="Email" />
-		    </a>
-		 
-		    <!-- Facebook -->
-		    <a href="http://www.facebook.com/sharer.php?u=task.php?task_id=$task_id" target="_blank">
-		        <img src="images/share_buttons/facebook.png" alt="Facebook" />
-		    </a>
-		    
-		    <!-- Google+ -->
-		    <a href="https://plus.google.com/share?url=task.php?task_id=$task_id" target="_blank">
-		        <img src="images/share_buttons/google.png" alt="Google" />
-		    </a>
-		    
-		    <!-- LinkedIn -->
-		    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=task.php?task_id=$task_id" target="_blank">
-		        <img src="images/share_buttons/linkedin.png" alt="LinkedIn" />
-		    </a>
-		    
-		    <!-- Pinterest -->
-		    <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
-		        <img src="images/share_buttons/pinterest.png" alt="Pinterest" />
-		    </a>
-		    
-		    <!-- Print -->
-		    <a href="javascript:;" onclick="window.print()">
-		        <img src="images/share_buttons/print.png" alt="Print" />
-		    </a>
-		    
-		    <!-- Reddit -->
-		    <a href="http://reddit.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
-		        <img src="images/share_buttons/reddit.png" alt="Reddit" />
-		    </a>
-		    
-		    <!-- StumbleUpon-->
-		    <a href="http://www.stumbleupon.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
-		        <img src="images/share_buttons/stumbleupon.png" alt="StumbleUpon" />
-		    </a>
-		    
-		    <!-- Tumblr-->
-		    <a href="http://www.tumblr.com/share/link?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
-		        <img src="images/share_buttons/tumblr.png" alt="Tumblr" />
-		    </a>
-		     
-		    <!-- Twitter -->
-		    <a href="https://twitter.com/share?url=task.php?task_id=$task_id&amp;text=Task%20on%20Mechsupport&amp;hashtags=taskonmechsupport" target="_blank">
-		        <img src="images/share_buttons/twitter.png" alt="Twitter" />
-		    </a>
-		    
-		    <!-- VK -->
-		    <a href="http://vkontakte.ru/share.php?url=task.php?task_id=$task_id" target="_blank">
-		        <img src="images/share_buttons/vk.png" alt="VK" />
-		    </a>
-		    
-		    <!-- Yummly -->
-		    <a href="http://www.yummly.com/urb/verify?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
-		        <img src="images/share_buttons/yummly.png" alt="Yummly" />
-		    </a>
-
-		</div>
-	</center>
-		
-	</div>
 
 	<?php 
 
@@ -265,6 +185,85 @@ $run_update = mysqli_query($con, $update_activity);
 			header("Location: error404.php");
 		}
 	?>
+<div class="row">
+		<center>
 
+		<!-- I got these buttons from simplesharebuttons.com -->
+		<div id="share-buttons">
+		    
+		    <!-- Buffer -->
+		    <a href="https://bufferapp.com/add?url=task.php?task_id=$task_id&amp;text=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/buffer.png" alt="Buffer" />
+		    </a>
+		    
+		    <!-- Digg -->
+		    <a href="http://www.digg.com/submit?url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/diggit.png" alt="Digg" />
+		    </a>
+		    
+		    <!-- Email -->
+		    <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 task.php?task_id=$task_id">
+		        <img src="images/share_buttons/email.png" alt="Email" />
+		    </a>
+		 
+		    <!-- Facebook -->
+		    <a href="http://www.facebook.com/sharer.php?u=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/facebook.png" alt="Facebook" />
+		    </a>
+		    
+		    <!-- Google+ -->
+		    <a href="https://plus.google.com/share?url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/google.png" alt="Google" />
+		    </a>
+		    
+		    <!-- LinkedIn -->
+		    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/linkedin.png" alt="LinkedIn" />
+		    </a>
+		    
+		    <!-- Pinterest -->
+		    <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+		        <img src="images/share_buttons/pinterest.png" alt="Pinterest" />
+		    </a>
+		    
+		    <!-- Print -->
+		    <a href="javascript:;" onclick="window.print()">
+		        <img src="images/share_buttons/print.png" alt="Print" />
+		    </a>
+		    
+		    <!-- Reddit -->
+		    <a href="http://reddit.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/reddit.png" alt="Reddit" />
+		    </a>
+		    
+		    <!-- StumbleUpon-->
+		    <a href="http://www.stumbleupon.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/stumbleupon.png" alt="StumbleUpon" />
+		    </a>
+		    
+		    <!-- Tumblr-->
+		    <a href="http://www.tumblr.com/share/link?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/tumblr.png" alt="Tumblr" />
+		    </a>
+		     
+		    <!-- Twitter -->
+		    <a href="https://twitter.com/share?url=task.php?task_id=$task_id&amp;text=Task%20on%20Mechsupport&amp;hashtags=taskonmechsupport" target="_blank">
+		        <img src="images/share_buttons/twitter.png" alt="Twitter" />
+		    </a>
+		    
+		    <!-- VK -->
+		    <a href="http://vkontakte.ru/share.php?url=task.php?task_id=$task_id" target="_blank">
+		        <img src="images/share_buttons/vk.png" alt="VK" />
+		    </a>
+		    
+		    <!-- Yummly -->
+		    <a href="http://www.yummly.com/urb/verify?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		        <img src="images/share_buttons/yummly.png" alt="Yummly" />
+		    </a>
+
+		</div>
+	</center>
+		
+	</div>
 </body>
 </html>

@@ -1,4 +1,25 @@
 <!DOCTYPE html>
+<?php
+session_start();
+include("includes/header.php");
+include("includes/connection.php");
+
+if(!isset($_SESSION['user_email'])){
+
+    session_destroy();
+    
+    header("location: index.php");
+}
+
+if(isset($_SESSION['user_email'])){
+
+    $email = $_SESSION['user_email'];
+}
+
+$update_activity = "UPDATE users SET last_activity = NOW() WHERE email = '$email'";
+$run_update = mysqli_query($con, $update_activity);
+
+?>
 <html>
 <head>
 	<title>SUBMIT TASK</title>
@@ -17,7 +38,12 @@ include("includes/connection.php");
 
 $task_id = $_GET['task_id'];
 
-$user_id = 1; //the user ID is gotten from the seesion's current user!, the person submitting the task
+$user = $_SESSION['user_email'];
+$get_user = "select user_id from users where email='$user'";
+$run_user = mysqli_query($con,$get_user);
+$row = mysqli_fetch_array($run_user);
+			
+$user_id = $row['user_id'];
 
 
 $submit = "UPDATE tasks SET submitted='yes', submitted_by='$user_id' WHERE id = '$task_id'";

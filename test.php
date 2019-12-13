@@ -1,35 +1,33 @@
-<?php 
+<?php
+//include file that lets us get duration of video/audio files
+include_once('getid3/getid3.php');
 
-//for making sure the needed file extension is gotten.
 $media = array();
 
-$path = "task_media/alege/";
+$fPath = "ibrahim";
 
-				foreach (glob($path.'/main/*.*') as $filename) { //the directory in glo() should be changed to particular task media directory!
-				    $p = pathinfo($filename);
-				    $media[] = $p['filename'];
-				}
+$file_dir  = "task_media\\{$fPath}\\main";
 
-				echo json_encode($media);
+$destination_dir = "task_media\\{$fPath}\\transcriptions\\";
 
-				//begins here..
-				
-				$file =  $path."main/".$media[3].".";
+$transcription_files = array();
 
-				$ext = array("jpg", "jpeg", "JPEG", "gif", "png", "bmp");
 
-				for($x = 0; $x < 6; $x++)
-				{
+            foreach (glob("{$file_dir}/*") as $filename) 
+            { //the directory in glo() should be changed to particular task media directory!
+                 $p = pathinfo($filename);
+                 $transcription_files[] = $p['filename'];
+            }
 
-				    $src = $file.$ext[$x];
+            for ($y=0; $y < sizeof($transcription_files); $y++)
+            {
+                $newfile = $destination_dir.$transcription_files[$y].".txt";
+                $fh = fopen($newfile, 'w') or die("Can't create file");
+            }
 
-				    if(file_exists($src))
-				    {
-
-				        echo "<img id='imgFrame' src='$src' style='width:90%; height:500px;' />";
-				    }
-				}
-
-				
+            if($fh)
+            {
+                echo "DONE";
+            }
 
 ?>
