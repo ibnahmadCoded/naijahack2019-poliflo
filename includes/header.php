@@ -28,7 +28,7 @@ $run_update = mysqli_query($con, $update_activity);
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="home.php" style="color: white;">mechsupport</a>
+			<a class="navbar-brand" href="home.php" style="color: white;">wennotate</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -158,7 +158,15 @@ $run_update = mysqli_query($con, $update_activity);
                  	case 'welcome':
                         echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> Welcome To Talsgrad! find out More...";
                         break;
-
+                    case 'task_creation':
+                        echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You created a new task...";
+                        break;
+                    case 'task_submission':
+                        echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname submited your task...";
+                        break;
+                    case 'task_deletion':
+                        echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> You deleted a task...";
+                        break;
                     default:
                         echo "<img class='img-circle' src='users/$user_img' width='30' height='30'> $user_fname $user_lname made a $type.";
                  }

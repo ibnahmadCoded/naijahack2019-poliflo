@@ -18,7 +18,7 @@ $run_update = mysqli_query($con, $update_activity);
 ?>
 <html>
 <head>
-	<title>Forgotten Your Password on Mechsupport: Make tasks accessible to you today. It's secure!</title>
+	<title>Forgotten Your Password on wennotate: Make tasks accessible to you today. It's secure!</title>
 	<meta charset="utf-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -53,7 +53,7 @@ $run_update = mysqli_query($con, $update_activity);
 <div class="row">
 	<div class='col-sm-12'>
 		<div class='well'>
-			<center><h1 style='color: white;'><strong>mechsupport</strong></h1></center>
+			<center><h1 style='color: white;'><strong>wennotate</strong></h1></center>
 		</div>
 	</div>
 </div>

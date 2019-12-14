@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mechsupport | activate account</title>
+	<title>wennotate | activate account</title>
 	<meta charset="utf-8">
  	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="well">
-			<center><h1 style="color: white;">mechsupport</h1></center>
+			<center><h1 style="color: white;">wennotate</h1></center>
 		</div>
 	</div>
 </div>
@@ -59,7 +59,7 @@
 		<div class="col-sm-3"></div>
 		<div class="main-content col-sm-6">
 			<div class="card-header">
-				<h3 style="text-align: center;"><strong>Login to mechsupport</strong></h3>
+				<h3 style="text-align: center;"><strong>Login to wennotate</strong></h3>
 			</div>
 			<div class="card">
 				<?php 
@@ -71,7 +71,7 @@
 			$email = $_GET['email'];
 		}
 	 ?>
-				<p><center>Thank you <?php echo "$first_name";?> for signing up! You are one more step away from having your mechsupport account!</center></p><br><br>
+				<p><center>Thank you <?php echo "$first_name";?> for signing up! You are one more step away from having your wennotate account!</center></p><br><br>
 				<p><center>Please check your email for an activation link which will lead you to your account</center></p><br><br>
 				<a href="resend_verification.php?email=<?php echo $email ?>" style="float: left; color: #fd4720;">Resend link?</a>
 				<a href="index.php" style="float: right; color: #fd4720;">Go back!</a>

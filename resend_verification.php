@@ -15,7 +15,7 @@ if(isset($_GET['email'])){
 	$first_name = $row_hash['f_name'];
 
 	$to = $email; // Send email to our user
-	$subject = 'Signup | Verify Your Mechsupport Account'; // Give the email a subject 
+	$subject = 'Signup | Verify Your wennotate Account'; // Give the email a subject 
 	$message = '
 			 
 			Thanks for signing up!
@@ -26,7 +26,7 @@ if(isset($_GET['email'])){
 			 
 			'; // Our message above including the link
 			                     
-	$headers = 'From:noreply@mechsupport.com' . "\r\n"; // Set from headers
+	$headers = 'From:noreply@wennotate.com' . "\r\n"; // Set from headers
 	mail($to, $subject, $message, $headers); // Send our email
 
 	echo "<script>alert('Activation link has been resent to you.')</script>";

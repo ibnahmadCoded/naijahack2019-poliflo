@@ -76,8 +76,8 @@ $run_update = mysqli_query($con, $update_activity);
 				echo "
 
 					<div class='row'>
-						<button class='btn btn-info' style='float: left; width: 120px; height: 50px; margin: 30px; margin-left: 100px;'><a href='task.php?task_id=$task_id' style='color: black;'>BACK TO TASK</a></button><br>
-						<button class='btn btn-info' style='float: right; width: 200px; height: 50px; margin: 30px; margin-right: 100px;'><a href='download.php?path=$path' style='color: black;'>DOWNLOAD SUBMISSION</a></button><br>
+						<button class='btn btn-info' style='float: left; width: 120px; height: 50px; margin: 30px; margin-left: 100px; background-color: #fd4720;'><a href='task.php?task_id=$task_id' style='color: white;'>BACK TO TASK</a></button><br>
+						<button class='btn btn-info' style='float: right; width: 200px; height: 50px; margin: 30px; margin-right: 100px; background-color: #fd4720;'><a href='download.php?path=$path' style='color: white;'>DOWNLOAD SUBMISSION</a></button><br>
 
 						<center><h3>Total Number Of Files In The Task: $num_total</h3></center>
 
@@ -92,8 +92,8 @@ $run_update = mysqli_query($con, $update_activity);
 					echo "
 
 					<div class='row'>
-						<button class='btn btn-info' style='float: left; width: 120px; height: 50px; margin: 30px; margin-left: 100px;'><a href='task.php?task_id=$task_id' style='color: black;'>BACK TO TASK</a></button><br>
-						<button class='btn btn-info' style='float: right; width: 120px; height: 50px; margin: 30px; margin-right: 100px;'><a href='task.php?task_id=$task_id' style='color: black;'>BACK TO TASK</a></button><br>
+						<button class='btn btn-info' style='float: left; width: 120px; height: 50px; margin: 30px; margin-left: 100px; background-color: #fd4720;'><a href='task.php?task_id=$task_id' style='color: white;'>BACK TO TASK</a></button><br>
+						<button class='btn btn-info' style='float: right; width: 120px; height: 50px; margin: 30px; margin-right: 100px; background-color: #fd4720;'><a href='task.php?task_id=$task_id' style='color: white;'>BACK TO TASK</a></button><br>
 
 						<center><h3>Total Number Of Files In The Task: $num_total</h3></center>
 
@@ -107,8 +107,8 @@ $run_update = mysqli_query($con, $update_activity);
 			echo "
 
 				<div class='row'>
-					<button class='btn btn-info' style='float: left; width: 120px; height: 50px; margin: 30px; margin-left: 100px;'><a href='next_transcription.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id' style='color: black;'>BACK TO TASK</a></button><br>
-					<button class='btn btn-info' style='float: right; width: 120px; height: 50px; margin: 30px; margin-right: 100px;'><a href='submit.php?task_id=$task_id' style='color: black;'>SUBMIT TASK</a></button><br>
+					<button class='btn btn-info' style='float: left; width: 120px; height: 50px; margin: 30px; margin-left: 100px; background-color: #fd4720;'><a href='next_transcription.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>BACK TO TASK</a></button><br>
+					<button class='btn btn-info' style='float: right; width: 120px; height: 50px; margin: 30px; margin-right: 100px; background-color: #fd4720;'><a href='submit.php?task_id=$task_id' style='color: white;'>SUBMIT TASK</a></button><br>
 
 					<center><h3>Total Number Of Files In The Task: $num_total</h3></center>
 

@@ -30,7 +30,7 @@ $run_update = mysqli_query($con, $update_activity);
 		$user_fname = $row['f_name'];
 		$user_lname = $row['l_name'];
 	?>
-	<title>Mechsupport's Home: <?php echo "$user_fname $user_lname"; ?>. The perfect location for tasks.</title>
+	<title>wennotate's Home: <?php echo "$user_fname $user_lname"; ?>. The perfect location for tasks.</title>
 	<meta charset="utf-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -77,7 +77,7 @@ tr:nth-child(even) {
 		<tr>
 		    <th>Title</th>
 		    <th>Type</th>
-		    <th>Payment</th>
+		    <th>Payment (USD)</th>
 		    <th>Due Date</th>
 		</tr>
 

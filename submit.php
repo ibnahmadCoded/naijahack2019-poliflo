@@ -52,7 +52,6 @@ $run_submit = mysqli_query($con, $submit);
 if($run_submit)
 {
 
-
 	$get_task = "SELECT cost, owner_id, media_path, type, task_question  FROM tasks WHERE id ='$task_id'"; 
 	$run_task = mysqli_query($con,$get_task);
 	$row = mysqli_fetch_array($run_task);
@@ -62,6 +61,11 @@ if($run_submit)
 	$task_question = $row['task_question'];
 	$path = $row['media_path'];
 	$type = $row['type'];
+
+	//notify
+	$notify = "insert into notifications (user_from_id, user_to_id, other_id, type, status, date) values('$user_id', '$owner_id', '$task_id', 'task_submission', 'unread', NOW())";
+
+	$run_notify = mysqli_query($con, $notify);
 
 	if($type == "model labeling")
 	{
@@ -75,10 +79,10 @@ if($run_submit)
 
 
 	//notify admin by email!
-	$email = "admin@mechsupport.com";
+	$email = "admin@wennotate.com";
 
 	$to = $email; // Send email to our user
-	$subject = 'MECHSUPPORT | Another task has been completed!'; // Give the email a subject 
+	$subject = 'wennotate | Another task has been completed!'; // Give the email a subject 
 	$message = '
 			 
 	Thanks for your work and support!
@@ -107,7 +111,7 @@ if($run_submit)
 	$email = $row_email['email'];
 
 	$to = $email; // Send email to our user
-	$subject = 'MECHSUPPORT | Solution to your task is READY'; // Give the email a subject 
+	$subject = 'wennotate | Solution to your task is READY'; // Give the email a subject 
 	$message = '
 			 
 	Thanks for using our service!

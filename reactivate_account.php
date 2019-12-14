@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Reactivate your Mechsupport Account. New tasks have been added. Gind tasks, complete tasks, get paid..</title>
+	<title>Reactivate your wennotate Account. New tasks have been added. Gind tasks, complete tasks, get paid..</title>
 	<meta charset="utf-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -51,7 +51,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="well">
-			<center><h1 style="color: white;">mechsupport</h1></center>
+			<center><h1 style="color: white;">wennotate</h1></center>
 		</div>
 	</div>
 </div>

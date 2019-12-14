@@ -87,7 +87,7 @@ tr:nth-child(even) {
 					<tr>
 					    <th>Title</th>
 					    <th>Type</th>
-					    <th>Payment</th>
+					    <th>Payment (USD)</th>
 					    <th>Due Date</th>
 					</tr>
 
@@ -124,11 +124,13 @@ tr:nth-child(even) {
 							    //check if the task has been paid for!
 							    if($cost <= 0 || $pay_received != "yes")
 							    {
-							    	echo "<th style='font-size:9px'>payment has not been recieved! This task will not be visible to the public</th>";
+							    	echo "<th style='font-size:9px'>payment has not been recieved! This task will not be visible to the public. 
+							    	<a href='pay_for_task.php?task_id=$task_id'>PAY FOR THIS TASK  </a>
+							    	<a href='delete_task.php?task_id=$task_id' style='color:#fd4720; float:right;'>  DELETE THIS TASK</a></th>";
 							    }
 							    else
 							    {
-							    	echo "<th>$cost</th>";
+							    	echo "<th>$cost <a href='delete_task.php?task_id=$task_id' style='color:#fd4720; float:right; font-size:9px;'>  DELETE THIS TASK</a></th>";
 							    }
 							    //if submitted, show submitted insted of expiration date!
 							    if($submitted == "yes")
@@ -180,7 +182,7 @@ tr:nth-child(even) {
 					<tr>
 					    <th>Title</th>
 					    <th>Type</th>
-					    <th>Payment</th>
+					    <th>Payment (USD)</th>
 					    <th>Due Date</th>
 					</tr>
 
@@ -204,17 +206,6 @@ tr:nth-child(even) {
 						$pay_received = $row['pay_received'];
 						$job_seeker_paid = $row['job_seeker_paid'];
 						$task_question = $row['task_question'];
-
-
-						// $user = $_SESSION['user_email'];
-						// $get_user = "select user_id from users where email='$user'";
-						// $run_user = mysqli_query($con,$get_user);
-						// $row = mysqli_fetch_array($run_user);
-						
-						// $user_id = $row['user_id'];
-
-						
-						//display tasks
 
 						echo "
 
@@ -268,7 +259,7 @@ tr:nth-child(even) {
 					<tr>
 					    <th>Title</th>
 					    <th>Type</th>
-					    <th>Payment</th>
+					    <th>Payment (USD)</th>
 					    <th>Payment disbursed</th>
 					</tr>
 
@@ -292,14 +283,6 @@ tr:nth-child(even) {
 						$pay_received = $row['pay_received'];
 						$job_seeker_paid = $row['job_seeker_paid'];
 						$task_question = $row['task_question'];
-
-
-						// $user = $_SESSION['user_email'];
-						// $get_user = "select user_id from users where email='$user'";
-						// $run_user = mysqli_query($con,$get_user);
-						// $row = mysqli_fetch_array($run_user);
-						
-						// $user_id = $row['user_id'];
 
 						
 						//display tasks
@@ -350,7 +333,7 @@ tr:nth-child(even) {
 					<tr>
 					    <th>Title</th>
 					    <th>Type</th>
-					    <th>Payment</th>
+					    <th>Payment (USD)</th>
 					    <th>Due Date</th>
 					</tr>
 
@@ -375,16 +358,6 @@ tr:nth-child(even) {
 						$job_seeker_paid = $row['job_seeker_paid'];
 						$task_question = $row['task_question'];
 
-
-						// $user = $_SESSION['user_email'];
-						// $get_user = "select user_id from users where email='$user'";
-						// $run_user = mysqli_query($con,$get_user);
-						// $row = mysqli_fetch_array($run_user);
-						
-						// $user_id = $row['user_id'];
-
-						
-						//display tasks
 
 						echo "
 

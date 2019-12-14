@@ -1,4 +1,24 @@
 <!DOCTYPE html>
+<?php
+session_start();
+include("includes/header.php");
+include("includes/connection.php");
+
+if(!isset($_SESSION['user_email'])){
+
+	session_destroy();
+	
+	header("location: index.php");
+}
+if(isset($_SESSION['user_email'])){
+
+	$email = $_SESSION['user_email'];
+}
+
+$update_activity = "UPDATE users SET last_activity = NOW() WHERE email = '$email'";
+$run_update = mysqli_query($con, $update_activity);
+
+?>
 <html>
 <head>
 	<title></title>
@@ -20,6 +40,16 @@
 
 			$path = $_GET['path'];
 			$task_id = $_GET['task_id'];
+
+			$get_user = "SELECT user_id FROM users WHERE email = '$email'";
+			$run_user = mysqli_query($con, $get_user);
+			$row_user = mysqli_fetch_array($run_user);
+
+			$user_id = $row_user['user_id'];
+
+			
+			$update_tasks = "UPDATE tasks SET attached_users = '$user_id', updated_at = NOW() WHERE id= '$task_id'";
+			$run_update = mysqli_query($con, $update_tasks);
 
 			$media = array();
 
@@ -75,11 +105,11 @@
 					    	if($ext[$x] == "mp4" || $ext[$x] == "webm" || $ext[$x] == "ogg")
 					    	{
 					    		echo "
-								<h3 align = center style='font-size:30px;'>$task_question</h3>
-								<h5 align = center style='font-size:50px;'>$current_media of $num</h5>
+								<h5 align = center style='font-size:30px;'>$task_question</h5>
+								<h6 align = center style='font-size:50px;'>$current_media of $num</h6>
 								<p align = center ><b> Please ensure to save before going to next task item! </b></p>
 								<center>
-								<video width='90%' height='500' controls>
+								<video width='90%' height='470' controls>
 								  <source src='$src' type='video/mp4'>
 								  <source src='$src' type='video/ogg'>
 								  <source src='$src' type='video/webm'>
@@ -117,8 +147,8 @@
 
 							echo "	 
 							<div class = 'col-sm-12'>
-								<button style='float:left;'><a href='previous_transcription.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id'>PREVIOUS</a></button>
-			 					<button style='float:right;'><a href='check_transcription.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id'>NEXT</a></button>
+								<button class='btn btn-info' style='float:left;'><a href='previous_transcription.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>PREVIOUS</a></button>
+			 					<button class='btn btn-info' style='float:right;'><a href='check_transcription.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>NEXT</a></button>
 			 				</div>";
 
 				}
@@ -127,7 +157,7 @@
 					
 					echo "	 
 						<div class = 'col-sm-12'>
-			 				<button style='float:right;'><a href='check_transcription.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id'>NEXT</a></button>
+			 				<button class='btn btn-info' style='float:right;'><a href='check_transcription.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>NEXT</a></button>
 			 			</div>";
 
 				}
@@ -141,8 +171,8 @@
 				{
 					echo "
 					<div>
-						<button style='float:left;'><a href='previous_transcription.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id'>PREVIOUS</a></button>
-			 			<button style='float:right;'><a href='view_trans_submission.php?question=$task_question&path=$path&task_id=$task_id'>VIEW SUBMISSION</a></button> 
+						<button class='btn btn-info' style='float:left;'><a href='previous_transcription.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>PREVIOUS</a></button>
+			 			<button class='btn btn-info' style='float:right;'><a href='view_trans_submission.php?question=$task_question&path=$path&task_id=$task_id' style='color: white;'>VIEW SUBMISSION</a></button> 
 			 		</div>
 					";
 				}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mechsupport: Account Verified! Welcome to the World of tasks.</title>
+	<title>wennotate: Account Verified! Welcome to the World of tasks.</title>
 	<meta charset="utf-8">
  	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="well">
-			<center><h1 style="color: white;">mechsupport</h1></center>
+			<center><h1 style="color: white;">wennotate</h1></center>
 		</div>
 	</div>
 </div>

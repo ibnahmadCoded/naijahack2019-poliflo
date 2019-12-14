@@ -54,23 +54,23 @@ include("includes/connection.php");
 				$profile_pic = "intelligence.jpg";
 
 		$sql = "INSERT INTO users (f_name,l_name,user_name,describe_user,profession,user_pass,email,user_country,user_gender,user_image,user_reg_date,status, hash,recovery_account, last_activity, active)
-		VALUES ('$first_name','$last_name','$username','Hello Mechsupport.This is my default status!','...','$password','$email','$country','$gender','$profile_pic',NOW(),'$status', '$hash','$best_friend', NOW(), '$active')";
+		VALUES ('$first_name','$last_name','$username','Hello wennotate.This is my default status!','...','$password','$email','$country','$gender','$profile_pic',NOW(),'$status', '$hash','$best_friend', NOW(), '$active')";
 		
 		if ($con->query($sql) === TRUE) {
 
 			$to      = $email; // Send email to our user
-			$subject = ' Mechsupport Signup | Verify Your Account'; // Give the email a subject 
+			$subject = ' wennotate Signup | Verify Your Account'; // Give the email a subject 
 			$message = '
 			 
 			Thanks for signing up!
-			Your account has been created, you can start uploading tasks or doing taks by following the url link below.
+			Your account has been created, you can start uploading tasks or doing tasks by following the url link below.
 			 
 			Please click this link to activate your account:
 			verify.php?email='.$email.'&hash='.$hash.'
 			 
 			'; // Our message above including the link
 			                     
-			$headers = 'From:noreply@mechsupport.com' . "\r\n"; // Set from headers
+			$headers = 'From:noreply@wennotate.com' . "\r\n"; // Set from headers
 			mail($to, $subject, $message, $headers); // Send our email
 
 			#echo "<script>alert('Well Done $first_name, you are good to go.')</script>";

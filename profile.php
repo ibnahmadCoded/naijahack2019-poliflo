@@ -63,13 +63,9 @@ if(isset($_GET['u5Nm']))
 <body>
 
 	<div class='row'>
-		<div class='col-sm-12'>
+		<div>
 			<center>
 
-				<Table style='width:90%'>
-
-					<tr>
-					    <th>
 					    	
 					    	<?php
 								echo"
@@ -113,10 +109,6 @@ if(isset($_GET['u5Nm']))
 										}
 								?>
 
-					    </th>
-
-					    <th>
-					    	<center>
 					   
 					   		<?php
 								echo"
@@ -131,13 +123,7 @@ if(isset($_GET['u5Nm']))
 								";
 								?>
 
-							</center>
 
-					    </th>
-					</tr>
-
-
-				</table>
 			</center>
 		</div>
 	</div>
@@ -146,7 +132,7 @@ if(isset($_GET['u5Nm']))
 	</div>
 	<div class="row">
 		<center>
-			<button class="btn btn-info" style="background-color: #fd4720; height: 100px; width: 600px;"><a href="my_tasks.php?u5Nm=<?php echo $user_name ?>" style="color: white">VIEW YOUR TASKS</a></button>
+			<button class="btn btn-info" style="background-color: #fd4720; height: 100px; width: 60%;"><a href="my_tasks.php?u5Nm=<?php echo $user_name ?>" style="color: white; font-size: 20px;">VIEW YOUR TASKS</a></button>
 		</center>
 	</div>
 	<div class="row" style="margin-bottom: 20px;">
@@ -159,7 +145,7 @@ if(isset($_GET['u5Nm']))
 		<div id="share-buttons">
 		    
 		    <!-- Buffer -->
-		    <a href="https://bufferapp.com/add?url=profile.php?u5Nm=$user_name&amp;text=Profile on Mechsupport" target="_blank">
+		    <a href="https://bufferapp.com/add?url=profile.php?u5Nm=$user_name&amp;text=Profile on wennotate" target="_blank">
 		        <img src="images/share_buttons/buffer.png" alt="Buffer" />
 		    </a>
 		    
@@ -199,22 +185,22 @@ if(isset($_GET['u5Nm']))
 		    </a>
 		    
 		    <!-- Reddit -->
-		    <a href="http://reddit.com/submit?url=profile.php?u5Nm=$user_name&amp;title=Profile on Mechsupport" target="_blank">
+		    <a href="http://reddit.com/submit?url=profile.php?u5Nm=$user_name&amp;title=Profile on wennotate" target="_blank">
 		        <img src="images/share_buttons/reddit.png" alt="Reddit" />
 		    </a>
 		    
 		    <!-- StumbleUpon-->
-		    <a href="http://www.stumbleupon.com/submit?url=profile.php?u5Nm=$user_name&amp;title=Profile on Mechsupport" target="_blank">
+		    <a href="http://www.stumbleupon.com/submit?url=profile.php?u5Nm=$user_name&amp;title=Profile on wennotate" target="_blank">
 		        <img src="images/share_buttons/stumbleupon.png" alt="StumbleUpon" />
 		    </a>
 		    
 		    <!-- Tumblr-->
-		    <a href="http://www.tumblr.com/share/link?url=profile.php?u5Nm=$user_name&amp;title=Profile on Mechsupport" target="_blank">
+		    <a href="http://www.tumblr.com/share/link?url=profile.php?u5Nm=$user_name&amp;title=Profile on wennotate" target="_blank">
 		        <img src="images/share_buttons/tumblr.png" alt="Tumblr" />
 		    </a>
 		     
 		    <!-- Twitter -->
-		    <a href="https://twitter.com/share?url=profile.php?u5Nm=$user_name&amp;text=Task%20on%20Mechsupport&amp;hashtags=profileonmechsupport" target="_blank">
+		    <a href="https://twitter.com/share?url=profile.php?u5Nm=$user_name&amp;text=Task%20on%20wennotate&amp;hashtags=profileonwennotate" target="_blank">
 		        <img src="images/share_buttons/twitter.png" alt="Twitter" />
 		    </a>
 		    
@@ -224,7 +210,7 @@ if(isset($_GET['u5Nm']))
 		    </a>
 		    
 		    <!-- Yummly -->
-		    <a href="http://www.yummly.com/urb/verify?url=profile.php?u5Nm=$user_name&amp;title=Profile on Mechsupport" target="_blank">
+		    <a href="http://www.yummly.com/urb/verify?url=profile.php?u5Nm=$user_name&amp;title=Profile on wennotate" target="_blank">
 		        <img src="images/share_buttons/yummly.png" alt="Yummly" />
 		    </a>
 

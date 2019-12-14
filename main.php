@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mechsupport login and signup. Get paid for supporting Artificial Intelligence Work.</title>
+	<title>wennotate login and signup. Get paid for supporting Artificial Intelligence Work.</title>
 	<meta charset="utf-8">
   	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -71,7 +71,7 @@ h5{
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="well">
-				<center><h1 style="color: white;">mechsupport</h1></center>
+				<center><h1 style="color: white;">wennotate</h1></center>
 			</div>
 		</div>
 	</div>
@@ -87,7 +87,7 @@ h5{
 								<div class='modal-content'>
 									<div class='modal-header'>
 										<button type='button' class='close' data-dismiss='modal'>&times;</button>
-										<h4 class='modal-title'>Why Mechsupport?</h4>
+										<h4 class='modal-title'>Why wennotate?</h4>
 									</div>
 									<div class='modal-body'>
 
@@ -153,7 +153,7 @@ h5{
 		</center>
 		</div>
 	</div><br>
-	<div class="col-sm-6"><center><strong>send an email to <i style="color: #fd4720;">support@mechsupport.com</i> for inquiries and answers to your questions.</strong></center></div>
+	<div class="col-sm-6"><center><strong>send an email to <i style="color: #fd4720;">support@wennotate.com</i> for inquiries and answers to your questions.</strong></center></div>
 </body>
 </html>
 

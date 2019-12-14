@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Recover your Mechsupport password and continue completing tasks to get paid.</title>
+	<title>Recover your wennotate password and continue completing tasks to get paid.</title>
 	<meta charset="utf-8">
  	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
 <div class="row">
 	<div class='col-sm-12'>
 		<div class='well'>
-			<center><h1 style='color: white;'><strong>mechsupport</strong></h1></center>
+			<center><h1 style='color: white;'><strong>wennotate</strong></h1></center>
 		</div>
 	</div>
 </div>

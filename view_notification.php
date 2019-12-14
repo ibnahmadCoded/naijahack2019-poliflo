@@ -21,7 +21,7 @@ if(isset($_GET['type'], $_GET['id'])){
 
     $user_id = $row_notification['user_from_id'];
     $userown_id = $row_notification['user_to_id'];
-    $post_id = $row_notification['other_id'];
+    $task_id = $row_notification['other_id'];
     #$user_to_id = $row_notifications['user_to_id'];
     #$type =  $row_notifications['type'];
     #$notification_status =  $row_notifications['status'];
@@ -39,7 +39,15 @@ if(isset($_GET['type'], $_GET['id'])){
                     case 'welcome':
                         echo "<script>window.open('welcome.php', '_self')</script>";
                         break;
-
+                    case 'task_creation':
+                        echo "<script>window.open('my_tasks.php?u5Nm=$user_name', '_self')</script>";
+                        break;
+                    case 'task_submission':
+                        echo "<script>window.open('task.php?task_id=$task_id', '_self')</script>";
+                        break;
+                    case 'task_deletion':
+                        echo "<script>window.open('my_tasks.php?u5Nm=$user_name', '_self')</script>";
+                        break;
                     default:
                         echo "<script>window.open('notifications.php', '_self')</script>";
     }

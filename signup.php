@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Signup on mechsupport</title>
+	<title>Signup on wennotate</title>
 	<meta charset="utf-8">
   	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -799,7 +799,7 @@ select option{
 <body>
 		<!-- main -->
 	<div class="main-w3layouts wrapper">
-		<h1>Mechsupport Sign Up Form</h1>
+		<h1>wennotate Sign Up Form</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
 				<form action="" method="post">
@@ -1034,7 +1034,7 @@ select option{
 		</div>
 		<!-- copyright -->
 		<div class="colorlibcopy-agile">
-			<p>© 2019 Mechsupport. All rights reserved | Contact support@mechsupport.com for all inquiries!</p>
+			<p>© 2019 wennotate. All rights reserved | Contact support@wennotate.com for all inquiries!</p>
 		</div>
 		<!-- //copyright -->
 		<ul class="colorlib-bubbles">

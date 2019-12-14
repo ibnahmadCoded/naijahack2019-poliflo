@@ -63,12 +63,13 @@ $run_update = mysqli_query($con, $update_activity);
 		$acceptable_users = $row['acceptable_users'];
 		$attached_users = $row['attached_users'];
 		$created_at = $row['created_at'];
+		$updated_at = $row['updated_at'];
 		$pay_received = $row['pay_received'];
 		$job_seeker_paid = $row['job_seeker_paid'];
 		$task_question = $row['task_question'];
 
-		// $output1 = date("d - M - Y H:i:s", strtotime($created_at));
-		$output2 = date("d - M - Y H:i:s", strtotime($expiration_date));
+		$output1 = date("d - M - Y, H:i:s", strtotime($updated_at));
+		$output2 = date("d - M - Y, H:i:s", strtotime($expiration_date));
 
 		//dont show task if it does not exist
 
@@ -111,41 +112,17 @@ $run_update = mysqli_query($con, $update_activity);
 
 								if ($type == "transcription task") 
 								{
-									if ($acceptable_users !== $attached_users && $submitted != 'yes' && $user_id != $owner_id)
+									if ($attached_users == 0 && $submitted != 'yes' && $user_id != $owner_id)
 									{
 										//change button to input type to run files creation script when clicked and
 										echo "
-								  		<button class='btn btn-info' style='width: 100%; height: 50px;''><a href='next_transcription.php?media_file=0&question=$task_question&path=$media_path&task_id=$task_id' style='color: black; font-size: 25px;''>BEGIN TASK</a></button>
+								  		<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='next_transcription.php?media_file=0&question=$task_question&path=$media_path&task_id=$task_id' style='color: white; font-size: 25px;'>BEGIN TASK</a></button>
 								  		"; 
 									}
-
-									else if ($submitted == 'yes')
-									{
-										if($user_id == $submitted_by || $user_id == $owner_id || $user_id == $admin_id)
-										{
-											//show the view submission button
-											echo "<button class='btn btn-info' style='width: 100%; height: 50px;'><a href='view_trans_submission.php?question=$task_question&path=$media_path&task_id=$task_id' style='color: black; font-size: 25px;'>VIEW SUBMISSION</a></button>";
-
-										}
-										else
-										{
-											echo "<h3>Sorry! You cannot do this task because it has been completed and submitted by a user.</h3>";
-										}
-									}
-
-									else
-									{
-										echo "<h3>Sorry! You cannot do this task because it is currently fully occupied.</h3>";
-									}
-									
-								}
-
-								else if ($type == "model labeling") 
-								{
-									if ($acceptable_users !== $attached_users && $submitted != 'yes' && $user_id != $owner_id)
+									elseif ($attached_users == $user_id && $submitted != 'yes' && $user_id != $owner_id)
 									{
 										echo "
-								  		<button class='btn btn-info' style='width: 100%; height: 50px;'><a href='next_media.php?media_file=0&question=$task_question&path=$media_path&task_id=$task_id' style='color: black; font-size: 25px;'>BEGIN TASK</a></button>
+								  		<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='next_media.php?media_file=0&question=$task_question&path=$media_path&task_id=$task_id' style='color: white; font-size: 25px;'>BEGIN TASK</a></button>
 								  		";  
 									}
 
@@ -154,7 +131,7 @@ $run_update = mysqli_query($con, $update_activity);
 										if($user_id == $submitted_by || $user_id == $owner_id || $user_id == $admin_id)
 										{
 											//show the view submission button
-											echo "<button class='btn btn-info' style='width: 100%; height: 50px;'><a href='view_submission.php?question=$task_question&path=$media_path&task_id=$task_id' style='color: black; font-size: 25px;'>VIEW SUBMISSION</a></button>";
+											echo "<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='view_trans_submission.php?question=$task_question&path=$media_path&task_id=$task_id' style='color: white; font-size: 25px;'>VIEW SUBMISSION</a></button>";
 
 										}
 										else
@@ -165,7 +142,84 @@ $run_update = mysqli_query($con, $update_activity);
 
 									else
 									{
-										echo "<h1>Sorry! You cannot do this task because it is currently fully occupied.</h1>";
+
+										if($pay_received == "no" && $user_id == $owner_id)
+										{
+											//echo payment link!
+											echo "
+												<p>This task is not visible to the public. Make it visible by following the link below</p>
+												<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='pay_for_task.php?task_id=$task_id' style='color: white; font-size: 25px;'>PAY FOR THIS TASK</a></button>
+											";
+
+										}
+										elseif($attached_users != 0 && $user_id == $owner_id)
+										{
+											//echo last updated
+											echo "
+												<h4>Sorry, the submission for this task is not ready! It is currently being done.<br> <center>Last Update: $output1</center></h4>
+											";
+										}
+										else
+										{
+											echo "<h3>Sorry! You cannot do this task because it is currently fully occupied.</h3>";
+										}
+
+									}
+									
+								}
+
+								else if ($type == "model labeling") 
+								{
+									if ($attached_users == 0 && $submitted != 'yes' && $user_id != $owner_id)
+									{
+										echo "
+								  		<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='next_media.php?media_file=0&question=$task_question&path=$media_path&task_id=$task_id' style='color: white; font-size: 25px;'>BEGIN TASK</a></button>
+								  		";  
+									}
+									elseif ($attached_users == $user_id && $submitted != 'yes' && $user_id != $owner_id)
+									{
+										echo "
+								  		<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='next_media.php?media_file=0&question=$task_question&path=$media_path&task_id=$task_id' style='color: white; font-size: 25px;'>BEGIN TASK</a></button>
+								  		";  
+									}
+
+									else if ($submitted == 'yes')
+									{
+										if($user_id == $submitted_by || $user_id == $owner_id || $user_id == $admin_id)
+										{
+											//show the view submission button
+											echo "<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='view_submission.php?question=$task_question&path=$media_path&task_id=$task_id' style='color: white; font-size: 25px;'>VIEW SUBMISSION</a></button>";
+
+										}
+										else
+										{
+											echo "<h3>Sorry! You cannot do this task because it has been completed and submitted by a user.</h3>";
+										}
+									}
+
+									else
+									{
+										if($pay_received == "no" && $user_id == $owner_id)
+										{
+											//echo payment link!
+											echo "
+												<p>This task is not visible to the public. Make it visible by following the link below</p>
+												<button class='btn btn-info' style='width: 100%; height: 50px; background-color: #fd4720;'><a href='pay_for_task.php?task_id=$task_id' style='color: white; font-size: 25px;'>PAY FOR THIS TASK</a></button>
+											";
+
+										}
+										elseif($attached_users != 0 && $user_id == $owner_id)
+										{
+											//echo last updated
+											echo "
+												<h4>Sorry, the submission for this task is not ready! It is currently being done.<br> <center>Last Update: $output1</center></h4>
+											";
+										}
+										else
+										{
+											echo "<h3>Sorry! You cannot do this task because it is currently fully occupied.</h3>";
+										}
+									
 									}
 								} 
 
@@ -185,6 +239,7 @@ $run_update = mysqli_query($con, $update_activity);
 			header("Location: error404.php");
 		}
 	?>
+	<div class="row" style="margin-bottom: 30px;"></div>
 <div class="row">
 		<center>
 
@@ -192,7 +247,7 @@ $run_update = mysqli_query($con, $update_activity);
 		<div id="share-buttons">
 		    
 		    <!-- Buffer -->
-		    <a href="https://bufferapp.com/add?url=task.php?task_id=$task_id&amp;text=Task on Mechsupport" target="_blank">
+		    <a href="https://bufferapp.com/add?url=task.php?task_id=$task_id&amp;text=Task on wennotate" target="_blank">
 		        <img src="images/share_buttons/buffer.png" alt="Buffer" />
 		    </a>
 		    
@@ -232,22 +287,22 @@ $run_update = mysqli_query($con, $update_activity);
 		    </a>
 		    
 		    <!-- Reddit -->
-		    <a href="http://reddit.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		    <a href="http://reddit.com/submit?url=task.php?task_id=$task_id&amp;title=Task on wennotate" target="_blank">
 		        <img src="images/share_buttons/reddit.png" alt="Reddit" />
 		    </a>
 		    
 		    <!-- StumbleUpon-->
-		    <a href="http://www.stumbleupon.com/submit?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		    <a href="http://www.stumbleupon.com/submit?url=task.php?task_id=$task_id&amp;title=Task on wennotate" target="_blank">
 		        <img src="images/share_buttons/stumbleupon.png" alt="StumbleUpon" />
 		    </a>
 		    
 		    <!-- Tumblr-->
-		    <a href="http://www.tumblr.com/share/link?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		    <a href="http://www.tumblr.com/share/link?url=task.php?task_id=$task_id&amp;title=Task on wennotate" target="_blank">
 		        <img src="images/share_buttons/tumblr.png" alt="Tumblr" />
 		    </a>
 		     
 		    <!-- Twitter -->
-		    <a href="https://twitter.com/share?url=task.php?task_id=$task_id&amp;text=Task%20on%20Mechsupport&amp;hashtags=taskonmechsupport" target="_blank">
+		    <a href="https://twitter.com/share?url=task.php?task_id=$task_id&amp;text=Task%20on%20wennotate&amp;hashtags=taskonwennotate" target="_blank">
 		        <img src="images/share_buttons/twitter.png" alt="Twitter" />
 		    </a>
 		    
@@ -257,7 +312,7 @@ $run_update = mysqli_query($con, $update_activity);
 		    </a>
 		    
 		    <!-- Yummly -->
-		    <a href="http://www.yummly.com/urb/verify?url=task.php?task_id=$task_id&amp;title=Task on Mechsupport" target="_blank">
+		    <a href="http://www.yummly.com/urb/verify?url=task.php?task_id=$task_id&amp;title=Task on wennotate" target="_blank">
 		        <img src="images/share_buttons/yummly.png" alt="Yummly" />
 		    </a>
 

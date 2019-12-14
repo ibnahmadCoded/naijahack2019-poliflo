@@ -1,4 +1,24 @@
 <!DOCTYPE html>
+<?php
+session_start();
+include("includes/header.php");
+include("includes/connection.php");
+
+if(!isset($_SESSION['user_email'])){
+
+	session_destroy();
+	
+	header("location: index.php");
+}
+if(isset($_SESSION['user_email'])){
+
+	$email = $_SESSION['user_email'];
+}
+
+$update_activity = "UPDATE users SET last_activity = NOW() WHERE email = '$email'";
+$run_update = mysqli_query($con, $update_activity);
+
+?>
 <html>
 <head>
 	<title></title>
@@ -20,6 +40,17 @@
 
 			$path = $_GET['path'];
 			$task_id = $_GET['task_id'];
+
+			$get_user = "SELECT user_id FROM users WHERE email = '$email'";
+			$run_user = mysqli_query($con, $get_user);
+			$row_user = mysqli_fetch_array($run_user);
+
+			$user_id = $row_user['user_id'];
+
+			
+			$update_tasks = "UPDATE tasks SET attached_users = '$user_id', updated_at = NOW() WHERE id= '$task_id'";
+			$run_update = mysqli_query($con, $update_tasks);
+
 
 			$media = array();
 
@@ -82,9 +113,9 @@
 					    {
 
 					        echo "
-							<h3 align = center style='font-size:50px;'>$task_question</h3>
-							<h5 align = center style='font-size:50px;'>$current_media of $num</h5>
-							<img id='imgFrame' src='$src' style='width:90%; height:500px;' />";
+							<h5 align = center style='font-size:50px;'>$task_question</h5>
+							<h6 align = center style='font-size:50px;'>$current_media of $num</h6>
+							<img id='imgFrame' src='$src' style='width:90%; height:470px;' />";
 
 					    }
 					}
@@ -97,8 +128,8 @@
 
 							echo "	 
 							<div class = 'col-sm-12'>
-								<button style='float:left;'><a href='previous_media.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id'>PREVIOUS</a></button>
-			 					<button style='float:right;'><a href='check_selection.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id'>NEXT</a></button>
+								<button class='btn btn-info' style='float:left;'><a href='previous_media.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>PREVIOUS</a></button>
+			 					<button class='btn btn-info' style='float:right;'><a href='check_selection.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>NEXT</a></button>
 			 				</div>";
 
 				}
@@ -107,7 +138,7 @@
 					
 					echo "	 
 						<div class = 'col-sm-12'>
-			 				<button style='float:right;'><a href='check_selection.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id'>NEXT</a></button>
+			 				<button class='btn btn-info' style='float:right;'><a href='check_selection.php?media_file=$next_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>NEXT</a></button>
 			 			</div>";
 
 				}
@@ -121,8 +152,8 @@
 				{
 					echo "
 					<div>
-						<button style='float:left;'><a href='previous_media.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id'>PREVIOUS</a></button>
-			 			<button style='float:right;'><a href='view_submission.php?question=$task_question&path=$path&task_id=$task_id'>VIEW SUBMISSION</a></button>  
+						<button class='btn btn-info' style='float:left;'><a href='previous_media.php?media_file=$previous_media&question=$task_question&path=$path&task_id=$task_id' style='color: white;'>PREVIOUS</a></button>
+			 			<button class='btn btn-info' style='float:right;'><a href='view_submission.php?question=$task_question&path=$path&task_id=$task_id' style='color: white;'>VIEW SUBMISSION</a></button>  
 			 		</div>
 					";
 				}
@@ -149,8 +180,8 @@
 
 				?>
 				
-				<button class="btn btn-info" style="margin-bottom: 30px; width: 50%; height: 10%;"><a href="yes.php?media_file=<?php echo $next_media ?>&question=<?php echo $task_question ?>&path=<?php echo $path ?>&task_id=<?php echo $task_id ?>" style="color: black; font-size: 50px;">YES</a></button><br>
-				<button class="btn btn-danger" style="width: 50%; height: 10%;"><a href="no.php?media_file=<?php echo $next_media ?>&question=<?php echo $task_question ?>&path=<?php echo $path ?>&task_id=<?php echo $task_id ?>" style="color: black; font-size: 50px;">NO</a></button><br>
+				<button class="btn btn-info" style="margin-bottom: 30px; width: 50%; height: 10%;"><a href="yes.php?media_file=<?php echo $next_media ?>&question=<?php echo $task_question ?>&path=<?php echo $path ?>&task_id=<?php echo $task_id ?>" style="color: white; font-size: 50px;">YES</a></button><br>
+				<button class="btn btn-info" style="width: 50%; height: 10%; background-color: #fd4720;"><a href="no.php?media_file=<?php echo $next_media ?>&question=<?php echo $task_question ?>&path=<?php echo $path ?>&task_id=<?php echo $task_id ?>" style="color: white; font-size: 50px;">NO</a></button><br>
 
 			</div>
 
